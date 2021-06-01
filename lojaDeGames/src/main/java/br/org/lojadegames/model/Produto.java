@@ -1,38 +1,42 @@
 package br.org.lojadegames.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Positive;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "tb_categoria")
-public class Categoria {
+@Table(name = "tb_produto")
+public class Produto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
+	
 	@NotNull
-	@Size(min = 10, max = 100)
-	private String categoria;
-
+	private String produto;
+	
 	@NotNull
-	@Size(min = 10, max = 1000)
 	private String descricao;
+	
+	@NotNull
+	@Positive
+	private BigDecimal preco;
 
-	@ManyToOne
+	@OneToMany(mappedBy = "rl", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("rl")
-	private Produto rl;
-
+	private List<Produto> rl;
+	
 
 	public long getId() {
 		return id;
@@ -42,12 +46,12 @@ public class Categoria {
 		this.id = id;
 	}
 
-	public String getCategoria() {
-		return categoria;
+	public String getProdutp() {
+		return produto;
 	}
 
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public void setProdutp(String produto) {
+		this.produto = produto;
 	}
 
 	public String getDescricao() {
@@ -58,13 +62,22 @@ public class Categoria {
 		this.descricao = descricao;
 	}
 
-	public Produto getRl() {
+	public BigDecimal getPreco() {
+		return preco;
+	}
+
+	public void setPreco(BigDecimal preco) {
+		this.preco = preco;
+	}
+
+	public List<Produto> getRl() {
 		return rl;
 	}
 
-	public void setRl(Produto rl) {
+	public void setRl(List<Produto> rl) {
 		this.rl = rl;
 	}
-
-
+	
+	
+	
 }
