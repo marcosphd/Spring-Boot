@@ -2,11 +2,12 @@ package br.org.lojadegames.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -22,16 +23,16 @@ public class Categoria {
 	private long id;
 
 	@NotNull
-	@Size(min = 10, max = 100)
+	@Size(min = 2, max = 100)
 	private String categoria;
 
 	@NotNull
-	@Size(min = 10, max = 1000)
+	@Size(min = 2, max = 1000)
 	private String descricao;
 
-	@ManyToOne
-	@JsonIgnoreProperties("rl")
-	private Produto rl;
+	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("categoria")
+	private List<Produto> produto;
 
 
 	public long getId() {
@@ -58,12 +59,12 @@ public class Categoria {
 		this.descricao = descricao;
 	}
 
-	public Produto getRl() {
-		return rl;
+	public List<Produto> getProduto() {
+		return produto;
 	}
 
-	public void setRl(Produto rl) {
-		this.rl = rl;
+	public void setProduto(List<Produto> produto) {
+		this.produto = produto;
 	}
 
 

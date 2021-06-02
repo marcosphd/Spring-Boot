@@ -1,14 +1,12 @@
 package br.org.lojadegames.model;
 
 import java.math.BigDecimal;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -33,9 +31,9 @@ public class Produto {
 	@Positive
 	private BigDecimal preco;
 
-	@OneToMany(mappedBy = "rl", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("rl")
-	private List<Produto> rl;
+	@ManyToOne
+	@JsonIgnoreProperties("produto")
+	private Categoria categoria;
 	
 
 	public long getId() {
@@ -70,14 +68,22 @@ public class Produto {
 		this.preco = preco;
 	}
 
-	public List<Produto> getRl() {
-		return rl;
+	public String getProduto() {
+		return produto;
 	}
 
-	public void setRl(List<Produto> rl) {
-		this.rl = rl;
+	public void setProduto(String produto) {
+		this.produto = produto;
 	}
-	
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
 	
 	
 }
