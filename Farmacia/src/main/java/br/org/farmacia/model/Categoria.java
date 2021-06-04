@@ -27,7 +27,7 @@ public class Categoria {
 	
 	@NotNull
 	@Size(min = 2, max = 255)
-	private String tipo;
+	private String tarja;
 	
 	@NotNull
 	@Size(min = 2, max = 255)
@@ -55,12 +55,12 @@ public class Categoria {
 		this.categoria = categoria;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public String getTarja() {
+		return tarja;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setTarja(String tarja) {
+		this.tarja = tarja;
 	}
 
 	public String getDescricao() {
@@ -78,7 +78,6 @@ public class Categoria {
 	public void setProduto(List<Produto> produto) {
 		this.produto = produto;
 	}
-	
 	
 	
 }
