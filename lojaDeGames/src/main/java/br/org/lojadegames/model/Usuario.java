@@ -1,4 +1,4 @@
-package br.org.generation.blogpessoal.model;
+package br.org.lojadegames.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,24 +11,24 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "tb_usuario")
 public class Usuario {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@NotNull
-	@Size(min = 2, max = 150)
+	@Size(min = 2, max = 100)
 	private String nome;
 	
 	@NotNull
-	@Size(min = 5)
+	@Size(min = 2)
 	private String usuario;
 	
 	@NotNull
-	@Size(min = 5)
+	@Size(min = 2)
 	private String senha;
-
 	
+
 	public long getId() {
 		return id;
 	}
@@ -60,6 +60,4 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	
 }
